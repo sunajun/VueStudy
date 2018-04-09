@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Template 制作模版</title>
+		<script src="../assets/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>Template 制作模版</h1>
+		<hr />
+		<div id="app">{{message}}</div>
+		<!--写在<template>标签里的模板-->
+		<template id="demo2">
+			<h2 style="color: purple;">我是template标签模板</h2>
+		</template>
+		<!--写在<script>标签里的模板,这种写模板的方法，可以让模板文件从外部引入。-->
+		<script type="x-template" id="demo3">
+			<h2 style="color: purple;">我是script标签模板</h2>
+		</script>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:'#app',
+				data:{
+					message:'Hello Vue!'
+				},
+				//直接写在选项里的模板,这种写法比较直观，但是如果模板html代码太多，不建议这么写.
+				//需要注意的是模板的标识不是单引号和双引号，而是，就是Tab上面的键。
+//				template:`
+//					<h1 style="color:red">我是选项模板</h1>
+//				`
+				template:'#demo3'
+			})
+		</script>
+	</body>
+</html>

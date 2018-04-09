@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>内置组件</title>
+		<script src="../assets/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--slot是标签的内容扩展，也就是说你用slot就可以在自定义组件时传递给组件内容，组件接收内容并输出。-->
+		<h1>内置组件</h1>
+		<hr />
+		<!--
+			slot的使用需要两步：
+			1、在HTML的组件中用slot属性传递值。
+			2、在组件模板中用<slot></slot>标签接收值。
+		-->
+		<div id="app">
+			<saj>
+				<span slot="bolgUrl">{{sajData.bolgUrl}}</span>
+				<span slot="netName">{{sajData.netName}}</span>
+				<span slot="skill">{{sajData.skill}}</span>
+			</saj>
+		</div>
+		<template id="tmp">
+			<div>
+		        <p>博客地址：<slot name="bolgUrl"></slot></p>
+		        <p>网名：<slot name="netName"></slot></p>
+		        <p>技术类型：<slot name="skill"></slot></p>	        
+		    </div>
+		</template>
+		<script type="text/javascript">
+			var saj = {
+				template:"#tmp"
+			}
+			var app = new Vue({
+				el:'#app',
+				data:{
+					sajData:{
+						bolgUrl:'http://www.baidu.com',
+				        netName:'技术胖',
+				        skill:'Web前端'
+					}
+				},
+				components:{
+					'saj':saj
+				}
+			})
+		</script>
+	</body>
+</html>

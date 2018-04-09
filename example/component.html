@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Component 组件</title>
+		<script src="../assets/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>Component 组件</h1>
+		<hr />
+		<div id="app">
+			<saj></saj>
+			<panda></panda>
+		</div>
+		
+		<script type="text/javascript">
+			//出局部注册其实就是写在构造器里，但是你需要注意的是，构造器里的components 是加s的，而全局注册是不加s的。
+			Vue.component("saj",{
+				template:`<div style='color: red;'>我是全局的组件</div>`
+			})
+			var app = new Vue({
+				el:'#app',
+				components:{
+					"panda":{
+						template:`<div style='color: purple;'>局部注册的panda组件</div>`
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>
+

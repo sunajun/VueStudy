@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Early Examples Demo</title>
+		<script src="../assets/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>实例方法</h1>
+		<hr />
+		<div id="app">
+			
+		</div>
+		<p><button onclick="destroy()">卸载</button></p>
+		<p><button onclick="reload()">刷新</button></p>
+		<p><button onclick="tick()">修改</button></p>
+		<script type="text/javascript">
+			var saj = Vue.extend({
+				template:`<p>{{message}}</p>`,
+				data:function(){
+					return {
+						message:'Hello ,I am saj'
+					}
+				},
+				mounted:function(){
+					console.log("mounted被创建");
+				},
+				destroyed:function(){
+	                console.log('destroyed 销毁之后')
+	           	},
+	           	updated:function(){
+	           		console.log('updated 更新之后')
+	           	}
+			})
+			//$mount方法是用来挂载我们的扩展的
+			var vm = new saj().$mount("#app");
+			function destroy(){
+				//$destroy() 卸载方法,$destroy()后边必须要有括号，没有括号是无用的。
+				vm.$destroy();
+			}
+			function reload(){
+				vm.$forceUpdate();
+			}
+			function tick(){
+			    vm.message="update message info ";
+			    //当Vue构造器里的data值被修改完成后会调用这个方法，也相当于一个钩子函数吧，和构造器里的updated生命周期很像
+			    vm.$nextTick(function(){
+		       		 console.log('message更新完后我被调用了');
+		    		})
+			}
+		</script>
+	</body>
+</html>

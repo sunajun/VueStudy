@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Watch 选项 监控数据</title>
+		<script src="../assets/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>Watch 选项 监控数据</h1>
+		<hr />
+		<div id="app">
+			<p>今日温度:{{temperature}}°C</p>
+			<p>穿衣建议:{{suggestion}}</p>
+			<p>
+				<button @click="add">添加温度</button>
+				<button @click="reduce">减少温度</button>
+			</p>
+		</div>
+		<script type="text/javascript">
+			var suggestions=['T恤短袖','夹克长裙','棉衣羽绒服'];
+			var app = new Vue({
+				el:'#app',
+				data:{
+					temperature:15,
+					suggestion:'夹克长裙'
+				},
+				methods:{
+					add:function(){
+						this.temperature+=8;
+					},
+					reduce:function(){
+						this.temperature-=9;
+					}
+				},
+//				watch:{
+//					temperature:function(newValue,oldValue){
+//						if(newValue>=26){
+//							this.suggestion=suggestions[0];
+//						}else if(newValue<26 && newValue>=0){
+//							this.suggestion=suggestions[1];
+//						}else{
+//							this.suggestion=suggestions[2];
+//						}
+//					}
+//				}
+			})
+			//用实例属性写watch监控,这样的好处就是降低我们程序的耦合度，使程序变的灵活。
+			app.$watch('temperature',function(newVal,oldVal){
+			    if(newVal>=26){
+			        this.suggestion=suggestions[0];
+			    }else if(newVal<26 && newVal >=0)
+			    {
+			        this.suggestion=suggestions[1];
+			    }else{
+			        this.suggestion=suggestions[2];
+			    }
+			 
+			})
+		</script>
+	</body>
+</html>

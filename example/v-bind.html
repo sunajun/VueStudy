@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-bind</title>
+		<script src="../assets/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--v-bind是处理HTML中的标签属性的-->
+		<h1>v-bind</h1>
+		<hr />
+		<div id="app">
+			<p><img v-bind:src="imgSrc" width="200px"/></p>
+			<!--v-bind 缩写-->
+			<p><a :href="webURL" target="_blank">技术胖</a></p>			
+			
+			<div :class="className">1.绑定ClassA</div>
+			<div :class="{classA:isOK}">2.绑定class中的判断</div>
+			<div :class="[classA,classB]">3、绑定class中的数组</div>
+			<div :class="isOK?classA:classB">4、绑定class中的三元表达式判断</div>		
+			<div :style="{color:red,fontSize:font}">5、绑定style</div>
+			<div :style="styleObject">6、用对象绑定style样式</div>
+			<hr />
+			<div>
+				<input type="checkbox" id="isOK" v-model="isOK"/>
+				<label for="isOK">{{isOK}}</label>
+			</div>
+		</div>
+		<style>
+			.classA{
+				color: red;
+			}
+			.classB{
+				font-size: 150%;
+			}
+		</style>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:'#app',
+				data:{
+					imgSrc:'http://jspang.com/wp-content/uploads/2017/02/vue01-2.jpg',
+					webURL:'http://jspang.com/',
+					className:'classA',
+					isOK:false,
+					classA:'classA',
+					classB:'classB',
+					red:'red',
+					font:'20px',
+					styleObject:{
+			           fontSize:'24px',
+			           color:'green'
+			       }
+				}
+			})
+		</script>
+	</body>
+</html>

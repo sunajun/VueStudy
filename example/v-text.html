@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>v-text&v-html</title>
+		<script src="../assets/js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<!--
+			我们已经会在html中输出data中的值了，我们已经用的是{{xxx}},这种情况是有弊端的，就是当我们网速很慢或者javascript出错时，
+			会暴露我们的{{xxx}}。Vue给我们提供的v-text,就是解决这个问题的
+			双大括号会将数据解释为纯文本，而非HTML。为了输出真正的HTML，你就需要使用v-html 指令.
+		-->
+		<h1>v-text&v-html实例</h1>
+		<hr />
+		<div id="app">
+			<span>{{message}}</span>
+			<span v-text="message"></span>
+			<span v-html="msgHtml"></span>
+		</div>
+		<script type="text/javascript">
+			var app = new Vue({
+				el:'#app',
+				data:{
+					message:'hello world!',
+					msgHtml:'<h2>hello vue!</h2>'
+				}
+			})
+		</script>
+	</body>
+</html>
+
